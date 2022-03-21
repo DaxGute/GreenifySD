@@ -20,11 +20,11 @@
         bottom: 0%;
         right: 1%;
     }
-    canvas{
+    /* canvas{
         position: absolute;
         width: 100%;
         height: 100%;
-    }
+    } */
 </style>
 
 <slot> Page not loading into Layout</slot>

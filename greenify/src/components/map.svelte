@@ -1,6 +1,7 @@
 <script>
     import mapboxgl from "mapbox-gl";
     import { onMount } from "svelte";
+    import Search from "./search.svelte"
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDB6cmkwbWIyZGhkM2NwbjczMjh2NDAwIn0.BZxxTyIKwHB6Dq9Uxt6Hmg';
 
@@ -18,6 +19,8 @@
         });
     })
 </script>
+
+<Search/>
 
 <svelte:head>
   <link
