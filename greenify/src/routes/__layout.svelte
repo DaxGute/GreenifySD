@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 
-<canvas></canvas>
+<!-- <canvas></canvas> -->
 <p>Coded by <a href="https://daxton2.wixsite.com/my-site">Daxton Gutekunst</a> </p>
 
 <style>

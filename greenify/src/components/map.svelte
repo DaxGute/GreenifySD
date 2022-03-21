@@ -1,16 +1,33 @@
 <script>
-    var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+    import mapboxgl from "mapbox-gl";
+    import { onMount } from "svelte";
 
-    var map;
- 
     mapboxgl.accessToken = 'pk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDB6cmkwbWIyZGhkM2NwbjczMjh2NDAwIn0.BZxxTyIKwHB6Dq9Uxt6Hmg';
-    var map = new mapboxgl.Map({
-    container: 'YOUR_CONTAINER_ELEMENT_ID',
-    style: 'mapbox://styles/mapbox/streets-v11'
-    });
+
+    const bounds = [
+        [ -117.54814665952902, 32.41610174321662], // Southwest coordinates
+        [-116.02104719605653, 33.56333188663347] // Northeast coordinates
+    ];
+
+    onMount(() => {
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            maxBounds: bounds
+        });
+    })
 </script>
-hello
-<div bind:this={map}></div>
+
+<svelte:head>
+  <link
+    href="https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.min.css"
+    rel="stylesheet"
+  />
+  <script
+    src="https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.js"></script>
+</svelte:head>
+
+<div class="absolute top-0 -z-10" id="map" style="height:100%; width:100%"></div>
 
 <style> 
 </style>
