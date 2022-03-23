@@ -10,8 +10,9 @@
         [-116.02104719605653, 33.56333188663347] // Northeast coordinates
     ];
 
+    var map
     onMount(() => {
-        var map = new mapboxgl.Map({
+        map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             maxBounds: bounds,
@@ -20,7 +21,7 @@
     })
 </script>
 
-<Search/>
+<Search map = {map}/>
 
 <svelte:head>
   <link
