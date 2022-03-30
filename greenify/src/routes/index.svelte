@@ -1,9 +1,9 @@
 <script>
-    import Map from "../components/map.svelte"
-    import UI from "../components/ui.svelte"
+    import Map from "../components/map/map.svelte"
+    import UI from "../components/UI/ui.svelte"
 </script>
 
-<UI/>
 <Map/>
+<UI/>
 
 
