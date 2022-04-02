@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "greenifysd",
+  "private_key_id": "fa82ddcf11a8931010d64c76dc8fe130931a829e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDLtoyRzpE1Tn9t\n4cNLM6rKvYNaD0/Kjx2H2bJvaB4lv1di86WE640cM9XNhWyOWDiJPGqfGrJ6j7J1\ns6kdbUAsAbcxN0CyAmVgFYudpGI6Ukr7nEuzRA2grqcd4xyMbE1ugoWjJzoueY+A\nztByFvrmSq5bzlwQG/L0ZiwXuh8YDQ3T9Pmc/7TlauMYq9TumxBy78Jp0YigIjdZ\n81rxdT4ldDX0vQbCXcD7/hk0pXO72wGOEUhajRTvkxDh1GKagsI27vDuDOtXVBZK\nIkLEKoEaLtG3FSiS4u5Itbzj7VXAw2w5/8TGd12o3Z/ss5iYBwN7OIrPC38bWcJR\nTa2ls0PtAgMBAAECggEAFQGgATER3DNaBJSxNMIBLKLaNqE5kyOq4eVa9w3/fdj7\nQ+LoAIrhpDTcKTNG/G6wdcZbIEj6epTyzBxYpgYsBd2vbE3MSA7jMUNHgFwBHQ57\nWPLHA5dS6GzaIsTWnsxUN78R1L8oyr4SRDAPYpRoDvNIg4MGD0syhG08wr2Ykzwm\nQJmelY7BYg/Q9CeVaUI1AgdB2UpfS8iI3dyic4And70XCdQzsD4hSo9x4l3xNBuH\nCtvr4jPXiKK2sPV4eYWVoA7LhtDwcCNWnFkTAI9pJznPLV6gXMrCr7xoXyQQ153h\nsE2q+EthwLnRLcjqPeKgvbcaS4OJbqMCNSBZDIMrQQKBgQDrQgM5vjM/J4LCe1rT\nRl2qD6wjIO/m2p1OgA/brJFbt5oZeAX0gwx9tiXVETaYLdy0FNGsbYmCofS3aENA\nd5CCP3cm6dq7QH4fqFse3Nd3iQokgo8dk4t5JwAcBCJ6/oUl87mCzGuMXfqPtmvL\nuOXG+bdE/owQ7N6oyhcp64Yg2QKBgQDdrIqrESEzuNxr7FDfE+mFcPePzvjK+vAW\nmK0p9LYDAsdxwqwao9xNxxEliaSDcQZKM4LIKosLRvEu1U8Dt+Rq7/OZnoF2lTcj\nRIbXxs6KVp5Vzo4o3qVI8Y8jIFM6FFeHkwu4nx5NPDSWQAzbPG+M88KUR9RS5pDj\nIDs0hffPNQKBgFDj48QI+AnxBe7lBze57B67QM7bVmGkLY5+TfWUgm5s1NmJAVMv\ndC4NYTi/sGvm6QoqVmXZS/zUvxYJDYavFcsTE18X7ZOQ+0zbUGluOc/qGMiw85CR\n2NURaeI4MbrkpNeF0/V7YEdlUO/1I19q9ebSmgdpFrQDHhQfWJObXgURAoGAfcdj\nP0GO90wTNeF22bzwqdi5f43OuU29YPTsfHvvsrGm/TOad9s2K6OiZQw+np5JFV04\n/d612oY8X3iFRvTW1J6mOCoqB2EPUiGV6WVS2Efhu4piO2ppmoQF1caHstLL/489\n/Vm71dMte3uIT/VwzieZ5o0DOq6800L8lQbW32kCgYEAtslCebj3rCMmcesT+fJ3\nzIfj5N5EJ2GWpQBoRosi8cT/COU1hZ41MvYl+KfcLtLsCVyNsVoSeKYkCNS9cIRG\ntixKyP70vDxF84Q5lSFplS71l3wTYuoy/cAF1ZmGNdC9LTc3QtobK7ZaxAbEV5Ye\nup9LDG0RdP6v3nDcAtZl4LQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "daxadmin@greenifysd.iam.gserviceaccount.com",
+  "client_id": "107587052945441779679",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/daxadmin%40greenifysd.iam.gserviceaccount.com"
+}
