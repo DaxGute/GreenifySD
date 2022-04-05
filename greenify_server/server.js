@@ -5,13 +5,11 @@ const path = require('path');
 app.use(cors());
 
 app.use(express.static('public'));
+app.use(express.json())
 
 /**
  * Database Firestore things
  */
-
-const firebase = require("firebase");
-require("firebase/firestore");
 
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
@@ -38,6 +36,15 @@ app.get('/api/zipLongLat/:zip', (req, res) => {
    })
 })
  
-app.post('/api/addTree', (req, res) => {
-
+app.post('/api/signUp', (req, res) => {
+   var email = "" + req.body.email
+   if (!email.includes('@ ') || !email.includes('.')){
+      res.json({'response': 'Please enter a valid email address'})
+   }else{
+      try{
+         res.json({'response': 'The email was resent to you'})
+      }catch{
+         res.json({'response': 'Please check you email for a link'})
+      }
+   }
 })

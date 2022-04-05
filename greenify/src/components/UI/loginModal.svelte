@@ -1,9 +1,32 @@
 <script>
     export var modalVis
     var emailSent = false
+
     function reset(){
         emailSent = false
         modalVis = false 
+    }
+
+    var signUpResult = ""
+    var email = ""
+    function signUp(){
+        fetch("http://localhost:8080/api/signUp", {
+            method: "POST",
+            
+            body: JSON.stringify({
+                email: email,
+            }),
+
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+            
+        })
+            .then(response => response.json())
+            .then(data => {
+                signUpResult = data["response"]
+                console.log(signUpResult)
+            });
     }
 </script>
 
@@ -16,11 +39,11 @@
 
             <div class="mx-10 my-5">
                 <label for="email" class="block text-md"> Email: </label>
-                <input type="email" name="email" class="block w-full p-1">
-                <button class="float-right bg-slate-500 rounded px-5 py-1 block rounded-t-none" on:click={()=>{emailSent=true}}> Submit </button>
+                <input type="email" name="email" class="block w-full p-1" bind:value={email}>
+                <button class="float-right bg-slate-500 rounded px-5 py-1 block rounded-t-none" on:click={signUp}> Submit </button>
             </div>
 
-            <p class="text-red-500 mx-10 my-10" style="opacity:{emailSent ? "100%" : "0%"}"> Please check your email to find your specialized link. </p>
+            <p class="text-red-500 mx-10 my-10"> {signUpResult} </p>
         </div>
     </div>
 {/if}

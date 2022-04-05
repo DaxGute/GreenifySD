@@ -19,7 +19,6 @@
         fetch(fetchReq)
         .then(response => response.json())
         .then(data => {
-            console.log(data["long"])
             map.flyTo({
                 center: [data["lat"], data["long"]],
                 zoom: 15,
