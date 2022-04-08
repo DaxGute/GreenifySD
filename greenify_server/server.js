@@ -36,15 +36,25 @@ app.get('/api/zipLongLat/:zip', (req, res) => {
    })
 })
  
-app.post('/api/signUp', (req, res) => {
+app.post('/api/signUp', async function (req, res) {
    var email = "" + req.body.email
-   if (!email.includes('@ ') || !email.includes('.')){
-      res.json({'response': 'Please enter a valid email address'})
+
+   var UserData = await db.collection('Users').doc(email).get();
+
+   if (!email.includes('@') || !email.includes('.')){
+      res.json({'response': 'Please enter a valid email address',
+                'loginVis': true})
    }else{
-      try{
-         res.json({'response': 'The email was resent to you'})
-      }catch{
-         res.json({'response': 'Please check you email for a link'})
+      var UserData = await db.collection('Users').doc(email).get();
+      if (UserData.exists){
+         res.json({'response': 'The email was resent to you',
+                   'loginVis': false})
+      }else {
+         await db.collection('Users').doc(email).set({
+            'treeLoc': [0, 0],
+         })
+         res.json({'response': 'Please check you email for a link',
+                   'loginVis': false})
       }
    }
 })
