@@ -90,7 +90,7 @@ app.post('/api/signUp', async function (req, res) {
       await db.collection('Users').doc(email).set({
          'planted': false,
          'treeLoc': [0, 0],
-         'randomString': randomString,
+         'key': randomString,
       })
        
       var UserData = await db.collection('Users').doc(email).get();
@@ -105,8 +105,8 @@ app.post('/api/signUp', async function (req, res) {
 })
 
 app.post('/api/plantTree', async function (req, res) {
-   var UserData = await db.collection('Users').doc(email).get();
-   if (UserData.exists){
+   var UserData = await db.collection('Users').doc(req.body.email).get();
+   if (UserData[""]){
       if (!UserData['treeLoc'][0]) {
          var x = "" + req.body.lat
          var y = "" + req.body.long
@@ -117,3 +117,5 @@ app.post('/api/plantTree', async function (req, res) {
       }
    }
 })
+
+//sk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDFxdm4ycWUxczd2M2NqeG5uY3FzdTBwIn0.RV9-3HfeHmjLKWD9FJfjQg
