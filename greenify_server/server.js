@@ -23,6 +23,31 @@ initializeApp({
 const db = getFirestore();
 
 
+/**
+ * setting up email
+ */
+
+ var nodemailer = require('nodemailer');
+
+ var transporter = nodemailer.createTransport({
+   service: 'gmail',
+   auth: {
+     user: 'daxtongute@gmail.com',
+     pass: 'DaxtonGute407'
+   }
+ });
+
+ const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+ function generateString(length) {
+     let result = '';
+     const charactersLength = characters.length;
+     for ( let i = 0; i < length; i++ ) {
+         result += characters.charAt(Math.floor(Math.random() * charactersLength));
+     }
+     return result;
+ }
+
 app.listen(8080, () => {
    console.log('Server is up at port 8080');
 });
@@ -40,21 +65,55 @@ app.post('/api/signUp', async function (req, res) {
    var email = "" + req.body.email
 
    var UserData = await db.collection('Users').doc(email).get();
-
    if (!email.includes('@') || !email.includes('.')){
       res.json({'response': 'Please enter a valid email address',
                 'loginVis': true})
+
    }else{
+      var randomString = generateString(10)
+      console.log(randomString)
+      var randomLink = "http://localhost:3000/?key=" + randomString +"&email=" + email
+
+      var mailOptions = {
+         from: 'daxtongute@gmail.com',
+         to: email,
+         subject: 'Your Personalized Greenify Link',
+         html: '<h1>Your Link</h1> <a href=' + randomLink + '> Link </a>'
+       };
+
+      transporter.sendMail(mailOptions, function(error, info){
+         if (error) {
+           console.log(error);
+         }
+      });
+       
+      await db.collection('Users').doc(email).set({
+         'planted': false,
+         'treeLoc': [0, 0],
+         'randomString': randomString,
+      })
+       
       var UserData = await db.collection('Users').doc(email).get();
       if (UserData.exists){
          res.json({'response': 'The email was resent to you',
                    'loginVis': false})
       }else {
-         await db.collection('Users').doc(email).set({
-            'treeLoc': [0, 0],
-         })
          res.json({'response': 'Please check you email for a link',
                    'loginVis': false})
+      }
+   }
+})
+
+app.post('/api/plantTree', async function (req, res) {
+   var UserData = await db.collection('Users').doc(email).get();
+   if (UserData.exists){
+      if (!UserData['treeLoc'][0]) {
+         var x = "" + req.body.lat
+         var y = "" + req.body.long
+         await db.collection('Users').doc(email).set({
+            'planted': true,
+            'treeLoc': [x, y],
+         })
       }
    }
 })

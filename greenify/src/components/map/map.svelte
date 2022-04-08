@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import Search from "./search.svelte"
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDB6cmkwbWIyZGhkM2NwbjczMjh2NDAwIn0.BZxxTyIKwHB6Dq9Uxt6Hmg';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDFxc2F2OHQxcmdpM2NzOWZtNDU0emRrIn0.IUj4mbGb97G_5Il6Hs44FA';
 
     const bounds = [
         [ -117.54814665952902, 32.41610174321662], // Southwest coordinates
