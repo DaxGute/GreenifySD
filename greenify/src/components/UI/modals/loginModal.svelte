@@ -12,25 +12,29 @@
     }
 
     var email = ""
+    var receivedResponse = true
     function signUp(){
-        fetch("http://localhost:8080/api/signUp", {
-            method: "POST",
-            
-            body: JSON.stringify({
-                email: email,
-            }),
+        if (receivedResponse) {
+            receivedResponse = false
+            fetch("http://localhost:8080/api/signUp", {
+                method: "POST",
+                
+                body: JSON.stringify({
+                    email: email,
+                }),
 
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-            
-        })
-            .then(response => response.json())
-            .then(data => {
-                signUpResult = data["response"]
-                loginVis = data["loginVis"]
-                console.log(signUpResult)
-            });
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+                
+            })
+                .then(response => response.json())
+                .then(data => {
+                    signUpResult = data["response"]
+                    loginVis = data["loginVis"]
+                    receivedResponse = true
+                });
+        }
     }
 </script>
 

@@ -22,11 +22,20 @@
             attributionControl: false,
         });
 
-        var plantMarker = new mapboxgl.Marker();
-        map.on('click', (e)=>{
-            console.log(e.lngLat)
-            plantMarker.setLngLat([e.lngLat.lng, e.lngLat.lat]).addTo(map);
-        })
+        var url = new URL(window.location.href)
+        if (url.searchParams.has('email') && url.searchParams.has('key')){
+            const el = document.createElement('div');
+            el.className = 'marker';
+            el.style.backgroundImage = 'url(./TreeMarker.png)';
+            el.style.width = '100px';
+            el.style.height = '100px';
+            el.style.backgroundSize = '100%';
+            
+            var plantMarker = new mapboxgl.Marker(el);
+            map.on('click', (e)=>{
+                plantMarker.setLngLat([e.lngLat.lng, e.lngLat.lat]).addTo(map);
+            })
+        }
     }) 
 
 </script>
