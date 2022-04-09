@@ -2,6 +2,7 @@
     // export var pointLoc
     
     import mapboxgl from "mapbox-gl";
+    import 'mapbox-gl/dist/mapbox-gl.css';
     import { onMount } from "svelte";
     import Search from "./search.svelte"
 
@@ -21,11 +22,12 @@
             attributionControl: false,
         });
 
-        var marker = new mapboxgl.Marker();
+        var plantMarker = new mapboxgl.Marker();
         map.on('click', (e)=>{
-            marker.setLngLat(e.lngLat).addTo(map);
+            console.log(e.lngLat)
+            plantMarker.setLngLat([e.lngLat.lng, e.lngLat.lat]).addTo(map);
         })
-    })
+    }) 
 
 </script>
 
