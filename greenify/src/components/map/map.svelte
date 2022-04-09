@@ -1,4 +1,6 @@
 <script>
+    // export var pointLoc
+    
     import mapboxgl from "mapbox-gl";
     import { onMount } from "svelte";
     import Search from "./search.svelte"
@@ -18,19 +20,16 @@
             maxBounds: bounds,
             attributionControl: false,
         });
+
+        var marker = new mapboxgl.Marker();
+        map.on('click', (e)=>{
+            marker.setLngLat(e.lngLat).addTo(map);
+        })
     })
+
 </script>
 
 <Search map = {map}/>
-
-<svelte:head>
-  <link
-    href="https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.min.css"
-    rel="stylesheet"
-  />
-  <script
-    src="https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.js"></script>
-</svelte:head>
 
 <div class="absolute top-0 -z-10" id="map" style="height:100%; width:100%"></div>
 

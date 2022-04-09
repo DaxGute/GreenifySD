@@ -53,6 +53,7 @@ app.listen(8080, () => {
 });
 
 const findLatLong = require('./findZipCode');
+const e = require('express');
 app.get('/api/zipLongLat/:zip', (req, res) => {
    longLat = findLatLong(req.params.zip)
    res.json({
@@ -106,15 +107,31 @@ app.post('/api/signUp', async function (req, res) {
 
 app.post('/api/plantTree', async function (req, res) {
    var UserData = await db.collection('Users').doc(req.body.email).get();
-   if (UserData[""]){
-      if (!UserData['treeLoc'][0]) {
+   if (UserData["key"] = req.body.key){
+      if (!UserData['planted']) {
          var x = "" + req.body.lat
          var y = "" + req.body.long
          await db.collection('Users').doc(email).set({
             'planted': true,
             'treeLoc': [x, y],
          })
+
+         res.json({
+            'success': true,
+            'response': 'Planted!'
+         })
+      }else{
+         res.json({
+            'success': false,
+            'response': 'Tree has already been planted on this account'
+         })
       }
+
+   }else{
+      res.json({
+         'success': false,
+         'response': 'Key does not match with email'
+      })
    }
 })
 
