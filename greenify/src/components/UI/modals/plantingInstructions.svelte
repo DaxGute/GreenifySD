@@ -1,5 +1,5 @@
 <script>
-    export var modalVis
+    export let modalVis
     modalVis = false
 
     function reset(){

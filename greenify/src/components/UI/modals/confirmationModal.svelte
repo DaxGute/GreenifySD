@@ -1,6 +1,6 @@
 <script>    
-    export var modalVis
-    export var confirmed
+    export let modalVis
+    export let confirmed
 
     confirmed = false
 

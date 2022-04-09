@@ -1,5 +1,5 @@
 <script>
-    export var plantConfirmed
+    export let plantConfirmed
     plantConfirmed = false
 
     import LoginModal from "./modals/loginModal.svelte"
@@ -7,18 +7,18 @@
     import PlantingInstructionsModal from "./modals/plantingInstructions.svelte"
     import { onMount } from "svelte";
 
-    var loginModalDisplay = false
+    let loginModalDisplay = false
     function toggleLoginModal(){
         loginModalDisplay = !loginModalDisplay
     }
-    var confirmationModalDisplay = false
+    let confirmationModalDisplay = false
     function toggleConfirmationModal(){
         confirmationModalDisplay = !confirmationModalDisplay
     }
 
-    var plantTreeMode = false
+    let plantTreeMode = false
     onMount(() => {
-        var url = new URL(window.location.href)
+        let url = new URL(window.location.href)
         if (url.searchParams.has('email') && url.searchParams.has('key')){
             plantTreeMode = true
         }
@@ -26,7 +26,7 @@
 </script>
 
 <LoginModal bind:modalVis = {loginModalDisplay}/>
-<ConfirmationModal bind:modalVis = {confirmationModalDisplay} confirmed = {plantConfirmed}/>
+<ConfirmationModal bind:modalVis = {confirmationModalDisplay} bind:confirmed = {plantConfirmed}/>
 <PlantingInstructionsModal modalVis = {plantTreeMode}/>
 
 {#if !loginModalDisplay && !confirmationModalDisplay} 

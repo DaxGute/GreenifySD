@@ -1,9 +1,9 @@
 <script>
     import { onMount } from "svelte";
-    var canvas
-    var mouseXVel = 0
+    let canvas
+    let mouseXVel = 0
     onMount(()=>{
-        var ctx = canvas.getContext("2d");
+        let ctx = canvas.getContext("2d");
         requestAnimationFrame(runVisual);
 
         function runVisual(){

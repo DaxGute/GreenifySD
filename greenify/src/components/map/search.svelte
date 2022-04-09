@@ -1,7 +1,7 @@
 <script>
-    export var map
+    export let map
 
-    var searchValue = ""
+    let searchValue = ""
     $: {
         if (searchValue == undefined){
             searchValue = ""
@@ -12,10 +12,10 @@
         }
     }
 
-    var zipCode
+    let zipCode
     function updateZipCode(){
         zipCode = searchValue
-        var fetchReq = "http://localhost:8080/api/zipLongLat/" + zipCode
+        let fetchReq = "http://localhost:8080/api/zipLongLat/" + zipCode
         fetch(fetchReq)
         .then(response => response.json())
         .then(data => {

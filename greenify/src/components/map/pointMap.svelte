@@ -1,8 +1,8 @@
 <script>
     import { onMount } from "svelte";
 
-    var canvas
-    var context
+    let canvas
+    let context
     onMount(()=>{
         context = canvas.getContext("2d")
     })

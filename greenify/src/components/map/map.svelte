@@ -1,5 +1,5 @@
 <script>
-    // export var pointLoc
+    export let pointLoc
     
     import mapboxgl from "mapbox-gl";
     import 'mapbox-gl/dist/mapbox-gl.css';
@@ -13,7 +13,7 @@
         [-116.02104719605653, 33.56333188663347] // Northeast coordinates
     ];
 
-    var map
+    let map
     onMount(() => {
         map = new mapboxgl.Map({
             container: 'map',
@@ -22,18 +22,19 @@
             attributionControl: false,
         });
 
-        var url = new URL(window.location.href)
+        let url = new URL(window.location.href)
         if (url.searchParams.has('email') && url.searchParams.has('key')){
             const el = document.createElement('div');
             el.className = 'marker';
-            el.style.backgroundImage = 'url(./TreeMarker.png)';
+            el.style.backgroundImage = 'url(./plantMarker.png)';
             el.style.width = '100px';
             el.style.height = '100px';
             el.style.backgroundSize = '100%';
             
-            var plantMarker = new mapboxgl.Marker(el);
+            let plantMarker = new mapboxgl.Marker(el);
             map.on('click', (e)=>{
                 plantMarker.setLngLat([e.lngLat.lng, e.lngLat.lat]).addTo(map);
+                pointLoc = [e.lngLat.lng, e.lngLat.lat]
             })
         }
     }) 

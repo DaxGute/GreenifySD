@@ -1,8 +1,8 @@
 <script>
-    export var modalVis
-    var emailSent = false
-    var loginVis = true
-    var signUpResult = ""
+    export let modalVis
+    let emailSent = false
+    let loginVis = true
+    let signUpResult = ""
 
     function reset(){
         emailSent = false
@@ -11,8 +11,8 @@
         signUpResult = ""
     }
 
-    var email = ""
-    var receivedResponse = true
+    let email = ""
+    let receivedResponse = true
     function signUp(){
         if (receivedResponse) {
             receivedResponse = false
