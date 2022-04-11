@@ -13,7 +13,7 @@
     $: {
         if (plantConfirmed) {
             let url = new URL(window.location.href)
-            fetch("http://localhost:8080/api/signUp", {
+            fetch("http://localhost:8080/api/plantTree", {
                 method: "POST",
                 
                 body: JSON.stringify({

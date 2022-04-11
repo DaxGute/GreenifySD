@@ -36,6 +36,26 @@
                 plantMarker.setLngLat([e.lngLat.lng, e.lngLat.lat]).addTo(map);
                 pointLoc = [e.lngLat.lng, e.lngLat.lat]
             })
+        }else{
+            map.on('load', () => {
+                map.addSource('TreeLoc', {
+                    type: 'geojson',
+                    // Use a URL for the value for the `data` property.
+                    data: 'https://api.mapbox.com/datasets/v1/daxtongute/cl1ts78vj25sg27mslbhfwpec?access_token=pk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDB6cmkwbWIyZGhkM2NwbjczMjh2NDAwIn0.BZxxTyIKwHB6Dq9Uxt6Hmg'
+                });
+                    
+                map.addLayer({
+                    'id': 'TreeLoc-layer',
+                    'type': 'circle',
+                    'source': 'TreeLoc',
+                    'paint': {
+                        'circle-radius': 8,
+                        'circle-stroke-width': 2,
+                        'circle-color': 'red',
+                        'circle-stroke-color': 'white'
+                    }
+                });
+            });
         }
     }) 
 

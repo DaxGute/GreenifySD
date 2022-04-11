@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const path = require('path');
+const fetch = require('node-fetch')
 app.use(cors());
-
 app.use(express.static('public'));
 app.use(express.json())
 
@@ -27,9 +27,9 @@ const db = getFirestore();
  * setting up email
  */
 
- var nodemailer = require('nodemailer');
+ let nodemailer = require('nodemailer');
 
- var transporter = nodemailer.createTransport({
+ let transporter = nodemailer.createTransport({
    service: 'gmail',
    auth: {
      user: 'daxtongute@gmail.com',
@@ -63,19 +63,19 @@ app.get('/api/zipLongLat/:zip', (req, res) => {
 })
  
 app.post('/api/signUp', async function (req, res) {
-   var email = "" + req.body.email
+   let email = "" + req.body.email
 
-   var UserData = await db.collection('Users').doc(email).get();
+   let UserData = await db.collection('Users').doc(email).get();
    if (!email.includes('@') || !email.includes('.')){
       res.json({'response': 'Please enter a valid email address',
                 'loginVis': true})
 
    }else{
-      var randomString = generateString(10)
+      let randomString = generateString(10)
       console.log(randomString)
-      var randomLink = "http://localhost:3000/?key=" + randomString +"&email=" + email
+      let randomLink = "http://localhost:3000/?key=" + randomString +"&email=" + email
 
-      var mailOptions = {
+      let mailOptions = {
          from: 'daxtongute@gmail.com',
          to: email,
          subject: 'Your Personalized Greenify Link',
@@ -94,7 +94,7 @@ app.post('/api/signUp', async function (req, res) {
          'key': randomString,
       })
        
-      var UserData = await db.collection('Users').doc(email).get();
+      let UserData = await db.collection('Users').doc(email).get();
       if (UserData.exists){
          res.json({'response': 'The email was resent to you',
                    'loginVis': false})
@@ -106,15 +106,36 @@ app.post('/api/signUp', async function (req, res) {
 })
 
 app.post('/api/plantTree', async function (req, res) {
-   var UserData = await db.collection('Users').doc(req.body.email).get();
+   let UserData = await db.collection('Users').doc(req.body.email).get();
    if (UserData["key"] = req.body.key){
       if (!UserData['planted']) {
-         var x = "" + req.body.lat
-         var y = "" + req.body.long
-         await db.collection('Users').doc(email).set({
+         let x = "" + req.body.lat
+         let y = "" + req.body.long
+         await db.collection('Users').doc(req.body.email).set({
             'planted': true,
             'treeLoc': [x, y],
          })
+
+         fetch("https://api.mapbox.com/datasets/v1/daxtongute/cl1ts78vj25sg27mslbhfwpec/features/" + req.body.email + "?access_token=sk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDFxdm4ycWUxczd2M2NqeG5uY3FzdTBwIn0.RV9-3HfeHmjLKWD9FJfjQg", {
+                method: "PUT", 
+                
+                body: JSON.stringify({
+                    id: req.body.email,
+                    type: "feature",
+                    geometry: {
+                     type: "Point",
+                     coordinates: [x, y],
+                  },
+                  properties: {
+                    name: req.body.email,
+                  }
+                }),
+
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+                
+            })
 
          res.json({
             'success': true,
