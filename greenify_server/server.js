@@ -107,6 +107,7 @@ app.post('/api/signUp', async function (req, res) {
    }
 })
 
+let currUser = 0
 app.post('/api/plantTree', async function (req, res) {
    let UserData = await db.collection('Users').doc(req.body.email).get();
    if (UserData["key"] = req.body.key){
@@ -115,9 +116,14 @@ app.post('/api/plantTree', async function (req, res) {
          let y = "" + req.body.long
          await db.collection('Users').doc(req.body.email).set({
             'planted': true,
-            'treeLoc': [x, y],
+            'LocID': currUser,
+         })
+         
+         await db.collection('Users').doc(""+currUser).set({
+            'Loc': [x,y]
          })
 
+         currUser += 1
       
          var form = new FormData();
          form.append('file', fs.createReadStream('./TreeLoc.ld'));
