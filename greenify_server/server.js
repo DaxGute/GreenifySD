@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 const path = require('path');
 const fetch = require('node-fetch')
+const fs = require('fs')
+var FormData = require('form-data');
 app.use(cors());
 app.use(express.static('public'));
 app.use(express.json())
@@ -116,26 +118,21 @@ app.post('/api/plantTree', async function (req, res) {
             'treeLoc': [x, y],
          })
 
-         fetch("https://api.mapbox.com/datasets/v1/daxtongute/cl1ts78vj25sg27mslbhfwpec/features/" + req.body.email + "?access_token=sk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDFxdm4ycWUxczd2M2NqeG5uY3FzdTBwIn0.RV9-3HfeHmjLKWD9FJfjQg", {
-                method: "PUT", 
+      
+         var form = new FormData();
+         form.append('file', fs.createReadStream('./TreeLoc.ld'));
+         fetch("https://api.mapbox.com/tilesets/v1/sources/daxtongute/TreeLoc?access_token=sk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDFxdm4ycWUxczd2M2NqeG5uY3FzdTBwIn0.RV9-3HfeHmjLKWD9FJfjQg", {
+                method: "POST", 
                 
-                body: JSON.stringify({
-                    id: req.body.email,
-                    type: "feature",
-                    geometry: {
-                     type: "Point",
-                     coordinates: [x, y],
-                  },
-                  properties: {
-                    name: req.body.email,
-                  }
-                }),
+                body: form,
 
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "multipart/form-data"
                 }
                 
             })
+            .then(response => response.json())
+            .then(data => console.log(data))
 
          res.json({
             'success': true,

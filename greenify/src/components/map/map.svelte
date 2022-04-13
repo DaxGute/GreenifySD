@@ -41,7 +41,7 @@
                 map.addSource('TreeLoc', {
                     type: 'vector',
                     // Use a URL for the value for the `data` property.
-                    data: 'mapbox://daxtongute.TreeLoc'
+                    data: 'mapbox://tileset-source/daxtongute/TreeLoc'
                 });
                     
                 map.addLayer({
