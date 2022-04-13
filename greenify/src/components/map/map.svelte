@@ -39,15 +39,16 @@
         }else{
             map.on('load', () => {
                 map.addSource('TreeLoc', {
-                    type: 'geojson',
+                    type: 'vector',
                     // Use a URL for the value for the `data` property.
-                    data: 'https://api.mapbox.com/datasets/v1/daxtongute/cl1ts78vj25sg27mslbhfwpec?access_token=pk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDB6cmkwbWIyZGhkM2NwbjczMjh2NDAwIn0.BZxxTyIKwHB6Dq9Uxt6Hmg'
+                    data: 'mapbox://daxtongute.TreeLoc'
                 });
                     
                 map.addLayer({
                     'id': 'TreeLoc-layer',
                     'type': 'circle',
                     'source': 'TreeLoc',
+                    'source-layer': 'TreeLoc',
                     'paint': {
                         'circle-radius': 8,
                         'circle-stroke-width': 2,

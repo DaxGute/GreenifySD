@@ -1,0 +1,10 @@
+{
+    "version": 1,
+    "layers": {
+      "TreeLoc": {
+        "source": "mapbox://tileset-source/daxtongute/TreeLoc",
+        "minzoom": 0,
+        "maxzoom": 5
+      }
+    }
+  }
