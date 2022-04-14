@@ -28,6 +28,7 @@
     "esbuild": "^0.14.27",
     "esbuild-darwin-64": "^0.14.27",
     "estree-walker": "^2.0.2",
+    "firebase": "^9.6.10",
     "fsevents": "^2.3.2",
     "function-bind": "^1.1.1",
     "globalyzer": "^0.1.0",

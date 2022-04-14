@@ -119,27 +119,15 @@ app.post('/api/plantTree', async function (req, res) {
             'LocID': currUser,
          })
          
-         await db.collection('Users').doc(""+currUser).set({
-            'Loc': [x,y]
-         })
+         let allTreeLoc = await db.collection('TreeLoc').doc('TreeLoc').get()
+         allTreeLoc["" + currUser] = [x,y]
+
+         await db.collection('TreeLoc').doc('TreeLoc').set(
+            allTreeLoc
+         )
 
          currUser += 1
       
-         var form = new FormData();
-         form.append('file', fs.createReadStream('./TreeLoc.ld'));
-         fetch("https://api.mapbox.com/tilesets/v1/sources/daxtongute/TreeLoc?access_token=sk.eyJ1IjoiZGF4dG9uZ3V0ZSIsImEiOiJjbDFxdm4ycWUxczd2M2NqeG5uY3FzdTBwIn0.RV9-3HfeHmjLKWD9FJfjQg", {
-                method: "POST", 
-                
-                body: form,
-
-                headers: {
-                    "Content-type": "multipart/form-data"
-                }
-                
-            })
-            .then(response => response.json())
-            .then(data => console.log(data))
-
          res.json({
             'success': true,
             'response': 'Planted!'
