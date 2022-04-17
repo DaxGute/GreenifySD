@@ -117,10 +117,7 @@ app.post('/api/plantTree', async function (req, res) {
             planted: true,
             LocID: currUser,
          })
-         
-         let allTreeLoc = await db.collection('TreeLoc').doc('TreeLoc').get()
 
-         console.log("hi")
          await db.collection('TreeLoc').doc('TreeLoc').update({
             [currUser]: [x,y]
          })

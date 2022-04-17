@@ -58,7 +58,6 @@
                     let data = doc.data()
 
                     let index = 0
-                    console.log(data[index])
                     let indexExist = true
                     while(indexExist){
                         try{
