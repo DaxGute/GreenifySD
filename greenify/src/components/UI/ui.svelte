@@ -1,6 +1,5 @@
 <script>
-    export let plantConfirmed
-    plantConfirmed = false
+    export let plantTree
 
     import LoginModal from "./modals/loginModal.svelte"
     import ConfirmationModal from "./modals/confirmationModal.svelte"
@@ -26,7 +25,7 @@
 </script>
 
 <LoginModal bind:modalVis = {loginModalDisplay}/>
-<ConfirmationModal bind:modalVis = {confirmationModalDisplay} bind:confirmed = {plantConfirmed}/>
+<ConfirmationModal bind:modalVis = {confirmationModalDisplay} plantTree = {plantTree}/>
 <PlantingInstructionsModal modalVis = {plantTreeMode}/>
 
 {#if !loginModalDisplay && !confirmationModalDisplay} 

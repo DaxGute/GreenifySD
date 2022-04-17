@@ -57,7 +57,8 @@
                     let allPoints = []
                     let data = doc.data()
 
-                    let index = 1
+                    let index = 0
+                    console.log(data[index])
                     let indexExist = true
                     while(indexExist){
                         try{
@@ -65,7 +66,7 @@
                                 type: 'Feature',
                                 geometry: {
                                     type: 'Point',
-                                    coordinates: [data[""+index]._long, data[""+index]._lat]
+                                    coordinates: [data[index][1], data[index][0]]
                                 }
                             }
                             index += 1

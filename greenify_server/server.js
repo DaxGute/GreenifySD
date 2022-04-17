@@ -74,7 +74,7 @@ app.post('/api/signUp', async function (req, res) {
 
    }else{
       let randomString = generateString(10)
-      console.log(randomString)
+   
       let randomLink = "http://localhost:3000/?key=" + randomString +"&email=" + email
 
       let mailOptions = {
@@ -90,17 +90,16 @@ app.post('/api/signUp', async function (req, res) {
          }
       });
        
-      await db.collection('Users').doc(email).set({
-         'planted': false,
-         'treeLoc': [0, 0],
-         'key': randomString,
-      })
        
       let UserData = await db.collection('Users').doc(email).get();
       if (UserData.exists){
          res.json({'response': 'The email was resent to you',
                    'loginVis': false})
       }else {
+         await db.collection('Users').doc(email).set({
+            planted: false,
+            LocID: 0
+         })
          res.json({'response': 'Please check you email for a link',
                    'loginVis': false})
       }
@@ -110,21 +109,21 @@ app.post('/api/signUp', async function (req, res) {
 let currUser = 0
 app.post('/api/plantTree', async function (req, res) {
    let UserData = await db.collection('Users').doc(req.body.email).get();
-   if (UserData["key"] = req.body.key){
-      if (!UserData['planted']) {
-         let x = "" + req.body.lat
-         let y = "" + req.body.long
+   if (UserData.key = req.body.key){
+      if (!UserData.planted) {
+         let x = req.body.lat
+         let y = req.body.long
          await db.collection('Users').doc(req.body.email).set({
-            'planted': true,
-            'LocID': currUser,
+            planted: true,
+            LocID: currUser,
          })
          
          let allTreeLoc = await db.collection('TreeLoc').doc('TreeLoc').get()
-         allTreeLoc["" + currUser] = [x,y]
 
-         await db.collection('TreeLoc').doc('TreeLoc').set(
-            allTreeLoc
-         )
+         console.log("hi")
+         await db.collection('TreeLoc').doc('TreeLoc').update({
+            [currUser]: [x,y]
+         })
 
          currUser += 1
       

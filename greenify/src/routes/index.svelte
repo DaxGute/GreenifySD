@@ -8,44 +8,54 @@
     let geoLocation = [0,0]
 
     let resultVis = false
+    let backgroundVis = false
     let success = false
     let response = ""
-    $: {
-        if (plantConfirmed) {
-            let url = new URL(window.location.href)
-            fetch("http://localhost:8080/api/plantTree", {
-                method: "POST",
-                
-                body: JSON.stringify({
-                    email: url.searchParams.get('email'),
-                    key: url.searchParams.get('key'),
-                    long: geoLocation[0],
-                    lat: geoLocation[1],
-                }),
+    function plantTree(){
+        let url = new URL(window.location.href)
+        fetch("http://localhost:8080/api/plantTree", {
+            method: "POST",
+            
+            body: JSON.stringify({
+                email: url.searchParams.get('email'),
+                key: url.searchParams.get('key'),
+                long: geoLocation[0],
+                lat: geoLocation[1],
+            }),
 
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-                
-            })
-                .then(response => response.json())
-                .then(data => {
-                    success = data["success"]
-                    response = data["response"]
-                    resultVis = true
-                });
-        }
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+            
+        })
+            .then(response => response.json())
+            .then(data => {
+                success = data["success"]
+                response = data["response"]
+                resultVis = true
+                setTimeout(()=>{
+                    location.href = 'http://localhost:3000';
+                }, 5000)
+            });
+        backgroundVis = true
     }
+    
 
 </script>
 
 <Map bind:pointLoc = {geoLocation} />
-<UI bind:plantConfirmed = {plantConfirmed}/>
+<UI plantTree = {plantTree}/>
 
-{#if success}
-    <Success bind:modalVis = {resultVis} result={response}/>
-{:else}
-    <Failure bind:modalVis = {resultVis} result={response}/>
+{#if backgroundVis}
+    <div class="w-full h-full bg-blue-900 bg-opacity-50 absolute top-0">
+        {#if resultVis}
+            {#if success}
+                <Success result={response}/>
+            {:else}
+                <Failure result={response}/>
+            {/if}
+        {/if}
+    </div>
 {/if}
 
 

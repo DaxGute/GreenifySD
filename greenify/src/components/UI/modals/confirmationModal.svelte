@@ -1,15 +1,13 @@
 <script>    
     export let modalVis
-    export let confirmed
-
-    confirmed = false
+    export let plantTree
 
     function reset(){
         modalVis = false 
     }
-
-    function yes(){
-        confirmed = true
+    function confirm(){
+        plantTree()
+        reset()
     }
 </script>
 
@@ -19,7 +17,7 @@
             <div class="p-5">
                 <p class="text-2xl text-slate-900"> Are you sure? </p>
                 <p class="text-m text-slate-500"> Once placed, you cannot change your submission. </p>
-                <button on:click={yes} class="text-xl bg-green-300 hover:bg-green-400 rounded-l absolute top-1/2 right-1/2 w-1/2 h-1/2 text-center">Yes</button>
+                <button on:click={confirm} class="text-xl bg-green-300 hover:bg-green-400 rounded-l absolute top-1/2 right-1/2 w-1/2 h-1/2 text-center">Yes</button>
                 <button on:click={reset} class="text-xl bg-red-300 hover:bg-red-400 rounded-r absolute top-1/2 left-1/2 w-1/2 h-1/2 text-center">No</button>
             </div>
         </div>
