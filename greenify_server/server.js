@@ -91,12 +91,12 @@ app.post('/api/signUp', async function (req, res) {
       });
        
        
-      let UserData = await db.collection('Users').doc(email).get();
+      let UserData = await db.collection('Users').doc(email.toLowerCase()).get();
       if (UserData.exists){
          res.json({'response': 'The email was resent to you',
                    'loginVis': false})
       }else {
-         await db.collection('Users').doc(email).set({
+         await db.collection('Users').doc(email.toLowerCase()).set({
             planted: false,
             LocID: 0
          })
