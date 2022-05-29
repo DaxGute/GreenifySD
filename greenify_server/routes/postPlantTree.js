@@ -1,21 +1,28 @@
 module.exports = function(app, db){
 
     app.post('/api/plantTree', async function (req, res) {
-        let UserData = await db.collection('Users').doc(req.body.email).get();
-        if (UserData.key = req.body.key){
-           if (!UserData.planted) {
+        let UserData = await db.collection('Users').doc(req.body.email.toLowerCase()).get();
+        if (!UserData.exists){
+            res.json({
+               'success': false,
+               'response': 'Email does not match with one in database'
+            })
+            return
+        }
+        
+        let data = UserData.data()
+        if (data.key == req.body.key){
+           if (!data.planted) {
               let x = req.body.lat
               let y = req.body.long
-              await db.collection('Users').doc(req.body.email).set({
+              await db.collection('Users').doc(req.body.email.toLowerCase()).update({
                  planted: true,
-                 LocID: currUser,
-              })
+               })
      
               await db.collection('TreeLoc').doc('TreeLoc').update({
-                 [currUser]: [x,y]
+                 [data.LocID]: [x,y]
               })
-     
-              currUser += 1
+
            
               res.json({
                  'success': true,

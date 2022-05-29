@@ -66,6 +66,9 @@ module.exports = function(app, db){
                 let randomString = generateString(10)
                 let randomLink = "http://localhost:3000/?key=" + randomString +"&email=" + email
                 sendMessage(randomLink, email)
+                await db.collection('Users').doc(email.toLowerCase()).update({
+                    key: randomString
+                })
                 res.json({'response': 'Email has been resent.',
                             'loginVis': false})
             }
@@ -74,11 +77,18 @@ module.exports = function(app, db){
             let randomString = generateString(10)
             let randomLink = "http://localhost:3000/?key=" + randomString +"&email=" + email
             sendMessage(randomLink, email)
-            
+
+            let statsDoc = await db.collection('TreeLoc').doc('Stats').get()
+            let stats = statsDoc.data()
             await db.collection('Users').doc(email.toLowerCase()).set({
                 planted: false,
-                LocID: 0
+                LocID: stats.currAccNum,
+                key: randomString
             })
+            db.collection('TreeLoc').doc('Stats').update({
+                currAccNum: stats.currAccNum + 1
+            })
+
             res.json({'response': 'Please check you email for a link',
                         'loginVis': false})
         }
