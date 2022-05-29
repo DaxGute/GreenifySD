@@ -1,0 +1,4 @@
+runtime: nodejs16
+entrypoint: node index.js
+env: standard
+service: default

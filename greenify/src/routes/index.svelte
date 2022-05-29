@@ -13,7 +13,7 @@
     let response = ""
     function plantTree(){
         let url = new URL(window.location.href)
-        fetch("http://localhost:8080/api/plantTree", {
+        fetch("http://server-dot-greenifysd.wl.r.appspot.com/api/plantTree", {
             method: "POST",
             
             body: JSON.stringify({
@@ -34,7 +34,7 @@
                 response = data["response"]
                 resultVis = true
                 setTimeout(()=>{
-                    location.href = 'http://localhost:3000';
+                    location.href = './';
                 }, 5000)
             });
         backgroundVis = true

@@ -1,10 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const path = require('path');
-const fetch = require('node-fetch')
-const fs = require('fs')
-var FormData = require('form-data');
+const http = require("http");
 app.use(cors());
 app.use(express.static('public'));
 app.use(express.json())
@@ -30,7 +27,9 @@ const db = getFirestore();
  */
 
 
-app.listen(8080, () => {
+const server = http.createServer(app) 
+
+server.listen(8080, () => {
    console.log('Server is up at port 8080');
 });
 
@@ -39,3 +38,5 @@ require('./routes/getZip')(app)
 require('./routes/postSignUp')(app, db)
 
 require('./routes/postPlantTree')(app, db)
+
+module.exports = server;
