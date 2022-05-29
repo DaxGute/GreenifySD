@@ -6,7 +6,7 @@
     import { onMount } from "svelte";
     import Search from "./search.svelte"
     import { initializeApp } from "firebase/app";
-    import { getFirestore, collection, getDoc, doc } from 'firebase/firestore/lite';
+    import { getFirestore, collection, getDoc, doc} from 'firebase/firestore';
 
     const firebaseConfig = {
         apiKey: "AIzaSyCgNGBk8nuH1EXZ_9Ks-91ug8WnAZgLMsI",
@@ -49,32 +49,28 @@
                 plantMarker.setLngLat([e.lngLat.lng, e.lngLat.lat]).addTo(map);
                 pointLoc = [e.lngLat.lng, e.lngLat.lat]
             })
+
         }else{
             let allTreeLocColl = collection(db, 'TreeLoc')
             let allTreeLocDoc = doc(allTreeLocColl, 'TreeLoc')
             map.on('load', () => {
+
                 getDoc(allTreeLocDoc).then(doc => {
                     let allPoints = []
                     let data = doc.data()
 
-                    let index = 0
-                    let indexExist = true
-                    while(indexExist){
-                        try{
-                            let newPoint = {
-                                type: 'Feature',
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [data[index][1], data[index][0]]
-                                }
+                    Object.values(data).forEach(datum => {
+                        let newPoint = {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [datum[1], datum[0]]
                             }
-                            index += 1
-                            allPoints.push(newPoint)
-                        }catch{
-                            indexExist = false
                         }
-                    }
-                
+                        allPoints.push(newPoint)
+                    
+                    })
+
                     map.loadImage("./treeMarker.png", (error, image) => {
                         map.addImage("tree marker", image)
                         

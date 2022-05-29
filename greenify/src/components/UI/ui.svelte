@@ -24,6 +24,10 @@
     })
 </script>
 
+
+<img class="inline-flex absolute left-0 top-0 w-[10%]" src="./logo.png" alt="GreenifySD Logo"> 
+
+
 <LoginModal bind:modalVis = {loginModalDisplay}/>
 <ConfirmationModal bind:modalVis = {confirmationModalDisplay} plantTree = {plantTree}/>
 <PlantingInstructionsModal modalVis = {plantTreeMode}/>

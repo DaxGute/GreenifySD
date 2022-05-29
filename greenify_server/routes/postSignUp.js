@@ -61,7 +61,7 @@ module.exports = function(app, db){
         if (UserData.exists){
             if (UserData.data().planted) {
                 res.json({'response': 'This account already has planted a tree.',
-                            'loginVis': false})
+                            'loginVis': true})
             }else{
                 let randomString = generateString(10)
                 let randomLink = "http://localhost:3000/?key=" + randomString +"&email=" + email
@@ -75,18 +75,12 @@ module.exports = function(app, db){
             
         }else {
             let randomString = generateString(10)
-            let randomLink = "http://localhost:3000/?key=" + randomString +"&email=" + email
+            let randomLink = "http://localhost:3000/?key=" + randomString +"&email=" + email.toLowerCase()
             sendMessage(randomLink, email)
 
-            let statsDoc = await db.collection('TreeLoc').doc('Stats').get()
-            let stats = statsDoc.data()
             await db.collection('Users').doc(email.toLowerCase()).set({
                 planted: false,
-                LocID: stats.currAccNum,
                 key: randomString
-            })
-            db.collection('TreeLoc').doc('Stats').update({
-                currAccNum: stats.currAccNum + 1
             })
 
             res.json({'response': 'Please check you email for a link',

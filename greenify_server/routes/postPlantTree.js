@@ -20,7 +20,7 @@ module.exports = function(app, db){
                })
      
               await db.collection('TreeLoc').doc('TreeLoc').update({
-                 [data.LocID]: [x,y]
+                 [data.key]: [x,y]
               })
 
            

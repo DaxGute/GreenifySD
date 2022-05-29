@@ -40,7 +40,7 @@
 
 {#if modalVis}
     <div class="w-full h-full bg-blue-900 bg-opacity-50 absolute top-0">
-        <div class="bg-slate-100 relative top-1/4 left-1/4 w-2/4 h-2/4 rounded-lg">
+        <div class="bg-slate-100 relative top-1/3 left-1/4 w-2/4 h-1/3 rounded-lg">
 
             <button class="text-4xl absolute right-2 top-2 hover:text-blue-700" on:click={reset}>X</button>
             <h1 class="text-center text-2xl pt-5"> Login to Plant Trees </h1>
@@ -53,7 +53,6 @@
 
             <p class="text-red-500 mx-10 my-10"> {signUpResult} </p>
 
-            <img class="mx-auto h-1/2 " src="./logo.png">
         </div>
     </div>
 {/if}
