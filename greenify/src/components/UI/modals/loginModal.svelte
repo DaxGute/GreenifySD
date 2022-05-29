@@ -52,6 +52,8 @@
             </div>
 
             <p class="text-red-500 mx-10 my-10"> {signUpResult} </p>
+
+            <img class="mx-auto h-1/2 " src="./logo.png">
         </div>
     </div>
 {/if}

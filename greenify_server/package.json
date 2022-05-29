@@ -13,7 +13,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "firebase": "^9.6.10",
-    "firebase-admin": "^10.0.2",
+    "firebase-admin": "^10.2.0",
     "form-data": "^4.0.0",
     "fs": "^0.0.1-security",
     "googleapis": "^99.0.0",

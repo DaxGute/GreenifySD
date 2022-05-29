@@ -75,7 +75,7 @@
                         }
                     }
                 
-                    map.loadImage("./TreeMarker.png", (error, image) => {
+                    map.loadImage("./treeMarker.png", (error, image) => {
                         map.addImage("tree marker", image)
                         
                         map.addSource('point', {
