@@ -32,7 +32,7 @@ function sendMessage(randomLink, email){
         <p>By clicking the below button, you will be taken back to the GreenifySD website.</p>\
         <a style="padding: 10px; margin-top: 10px; margin-bottom: 10px; border-radius: 10px; border-width: 0px; background-color:lightgreen;" href="' + randomLink + '"> Click This to Start </a>\
         <p>Daxton Gutekunst <br>Founder of GreenifySD</p>\
-        <img style="width: 100px; height: 100px;" src="http://localhost:3000/static/logo.png">\
+        <img style="width: 100px; height: 100px;" src="https://greenifysd.wl.r.appspot.com//static/logo.png">\
         <hr>\
         <p>You have received this email because you indicated that you would like to sign up to plant a tree.</p>\
         <p>If you didn\'t request this link, you can safely ignore this email. Someone else might have typed your email address by mistake.</p>'
@@ -64,7 +64,7 @@ module.exports = function(app, db){
                             'loginVis': true})
             }else{
                 let randomString = generateString(10)
-                let randomLink = "http://localhost:3000/?key=" + randomString +"&email=" + email
+                let randomLink = "https://greenifysd.wl.r.appspot.com/?key=" + randomString +"&email=" + email
                 sendMessage(randomLink, email)
                 await db.collection('Users').doc(email.toLowerCase()).update({
                     key: randomString

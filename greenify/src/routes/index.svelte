@@ -13,7 +13,7 @@
     let response = ""
     function plantTree(){
         let url = new URL(window.location.href)
-        fetch("http://server-dot-greenifysd.wl.r.appspot.com/api/plantTree", {
+        fetch("https://server-dot-greenifysd.wl.r.appspot.com/api/plantTree", {
             method: "POST",
             
             body: JSON.stringify({

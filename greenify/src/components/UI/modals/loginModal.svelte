@@ -16,7 +16,7 @@
     function signUp(){
         if (receivedResponse) {
             receivedResponse = false
-            fetch("http://server-dot-greenifysd.wl.r.appspot.com/api/signUp", {
+            fetch("https://server-dot-greenifysd.wl.r.appspot.com/api/signUp", {
                 method: "POST",
                 
                 body: JSON.stringify({

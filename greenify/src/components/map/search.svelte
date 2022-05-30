@@ -15,7 +15,7 @@
     let zipCode
     function updateZipCode(){
         zipCode = searchValue
-        let fetchReq = "http://server-dot-greenifysd.wl.r.appspot.com/api/zipLongLat/" + zipCode
+        let fetchReq = "https://server-dot-greenifysd.wl.r.appspot.com/api/zipLongLat/" + zipCode
         fetch(fetchReq)
         .then(response => response.json())
         .then(data => {

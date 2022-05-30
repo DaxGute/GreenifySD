@@ -55108,7 +55108,7 @@ ${!loginModalDisplay && !confirmationModalDisplay ? `${`<div class="${"inline-fl
       let response = "";
       function plantTree() {
         let url = new URL(window.location.href);
-        fetch("http://server-dot-greenifysd.wl.r.appspot.com/api/plantTree", {
+        fetch("https://server-dot-greenifysd.wl.r.appspot.com/api/plantTree", {
           method: "POST",
           body: JSON.stringify({
             email: url.searchParams.get("email"),
@@ -55160,8 +55160,8 @@ var entry3, js3, css4;
 var init__3 = __esm({
   ".svelte-kit/output/server/nodes/2.js"() {
     init_index_svelte();
-    entry3 = "pages/index.svelte-22de2354.js";
-    js3 = ["pages/index.svelte-22de2354.js", "chunks/vendor-2dff75d7.js"];
+    entry3 = "pages/index.svelte-1a0bc376.js";
+    js3 = ["pages/index.svelte-1a0bc376.js", "chunks/vendor-2dff75d7.js"];
     css4 = ["assets/pages/index.svelte-2d030089.css"];
   }
 });
@@ -56002,7 +56002,7 @@ var manifest = {
   assets: new Set(["logo.png", "plantMarker.png", "treeMarker.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    entry: { "file": "start-31d48d94.js", "js": ["start-31d48d94.js", "chunks/vendor-2dff75d7.js"], "css": [] },
+    entry: { "file": "start-967cb2d2.js", "js": ["start-967cb2d2.js", "chunks/vendor-2dff75d7.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
